@@ -21,8 +21,16 @@ Thanks Zach!
 
 ```python
 import backpeddle
-backpeddle.DEBUG = True
+
+### find a file from current dir, up through all the parents
 res = backpeddle.find('Vagrantfile')
+
+### use like os.walk
+for curdir,dirs,files in backpeddle.up:
+    pass
+
+for curdir,dirs,files in backpeddle.down:
+    pass
 ```
 
 From the `example` directory:
