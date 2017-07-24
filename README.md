@@ -26,10 +26,10 @@ import backpeddle
 res = backpeddle.find('Vagrantfile')
 
 ### use like os.walk
-for curdir,dirs,files in backpeddle.up:
+for curdir,dirs,files in backpeddle.up('/path/to/starting/point'):
     pass
 
-for curdir,dirs,files in backpeddle.down:
+for curdir,dirs,files in backpeddle.down('/path/to/starting/point'):
     pass
 ```
 
