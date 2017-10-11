@@ -2,17 +2,17 @@
 import os
 
 
-class BackpeddleArgumentError(Exception): pass
+class BackpedalArgumentError(Exception): pass
 
 DEBUG = False
-if 'BACKPEDDLE_DEBUG' in os.environ.keys():
-    if int(os.environ['BACKPEDDLE_DEBUG']) == 1:
+if 'BACKPEDAL_DEBUG' in os.environ.keys():
+    if int(os.environ['BACKPEDAL_DEBUG']) == 1:
         DEBUG = True
 
 
 def log(msg):
     if DEBUG is True:
-        print('+++ BACKPEDDLE // %s' % msg)
+        print('+++ BACKPEDAL // %s' % msg)
 
 
 def abspath(path):
@@ -96,7 +96,7 @@ def find(item, path=None, direction='up', first_only=True, item_type='file'):
         assert item_type in ['file', 'directory', 'both'], \
             "Argument 'item_type' must be one of ['file', 'directory', 'both']"
     except AssertionError as e:
-        raise BackpeddleArgumentError(e.args[0])
+        raise BackpedalArgumentError(e.args[0])
 
     if item_type == 'both':
         type_log = 'files/directories'
