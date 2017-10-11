@@ -44,55 +44,55 @@ $ python example.py
 Find the first matching file starting from `.`
 ------------------------------------------------------------------------------
 +++ BACKPEDAL // looking for file README.md
-+++ BACKPEDAL // backpeddling upward from path: /Users/derks/Development/backpedal/example
++++ BACKPEDAL // backpedaling upward from path: /Users/derks/Development/backpedal/example
 RES > /Users/derks/Development/backpedal/example/README.md
 
 ------------------------------------------------------------------------------
 Find all matching files starting from sub1/a/b/c:
 ------------------------------------------------------------------------------
 +++ BACKPEDAL // looking for file README.md
-+++ BACKPEDAL // backpeddling upward from path: /Users/derks/Development/backpedal/example/sub1/a/b/c
-+++ BACKPEDAL // backpeddling upward from path: /Users/derks/Development/backpedal/example/sub1/a/b
-+++ BACKPEDAL // backpeddling upward from path: /Users/derks/Development/backpedal/example/sub1/a
-+++ BACKPEDAL // backpeddling upward from path: /Users/derks/Development/backpedal/example/sub1
-+++ BACKPEDAL // backpeddling upward from path: /Users/derks/Development/backpedal/example
-+++ BACKPEDAL // backpeddling upward from path: /Users/derks/Development/backpedal
-+++ BACKPEDAL // backpeddling upward from path: /Users/derks/Development
-+++ BACKPEDAL // backpeddling upward from path: /Users/derks
-+++ BACKPEDAL // backpeddling upward from path: /Users
-+++ BACKPEDAL // backpeddling upward from path: /
++++ BACKPEDAL // backpedaling upward from path: /Users/derks/Development/backpedal/example/sub1/a/b/c
++++ BACKPEDAL // backpedaling upward from path: /Users/derks/Development/backpedal/example/sub1/a/b
++++ BACKPEDAL // backpedaling upward from path: /Users/derks/Development/backpedal/example/sub1/a
++++ BACKPEDAL // backpedaling upward from path: /Users/derks/Development/backpedal/example/sub1
++++ BACKPEDAL // backpedaling upward from path: /Users/derks/Development/backpedal/example
++++ BACKPEDAL // backpedaling upward from path: /Users/derks/Development/backpedal
++++ BACKPEDAL // backpedaling upward from path: /Users/derks/Development
++++ BACKPEDAL // backpedaling upward from path: /Users/derks
++++ BACKPEDAL // backpedaling upward from path: /Users
++++ BACKPEDAL // backpedaling upward from path: /
 RES > ['/Users/derks/Development/backpedal/example/sub1/a/README.md', '/Users/derks/Development/backpedal/example/README.md', '/Users/derks/Development/backpedal/README.md']
 
 ------------------------------------------------------------------------------
 Look for directory but peddle down instead of up
 ------------------------------------------------------------------------------
 +++ BACKPEDAL // looking for directory data
-+++ BACKPEDAL // backpeddling downward from path: /Users/derks/Development/backpedal/example
-+++ BACKPEDAL // backpeddling downward from path: /Users/derks/Development/backpedal/example/sub1
-+++ BACKPEDAL // backpeddling downward from path: /Users/derks/Development/backpedal/example/sub1/a
-+++ BACKPEDAL // backpeddling downward from path: /Users/derks/Development/backpedal/example/sub1/a/b
-+++ BACKPEDAL // backpeddling downward from path: /Users/derks/Development/backpedal/example/sub1/a/b/c
++++ BACKPEDAL // backpedaling downward from path: /Users/derks/Development/backpedal/example
++++ BACKPEDAL // backpedaling downward from path: /Users/derks/Development/backpedal/example/sub1
++++ BACKPEDAL // backpedaling downward from path: /Users/derks/Development/backpedal/example/sub1/a
++++ BACKPEDAL // backpedaling downward from path: /Users/derks/Development/backpedal/example/sub1/a/b
++++ BACKPEDAL // backpedaling downward from path: /Users/derks/Development/backpedal/example/sub1/a/b/c
 RES > /Users/derks/Development/backpedal/example/sub1/a/b/c/data
 
 ------------------------------------------------------------------------------
 Look for files and directories in both directions
 ------------------------------------------------------------------------------
 +++ BACKPEDAL // looking for files/directories data
-+++ BACKPEDAL // backpeddling upward from path: /Users/derks/Development/backpedal/example
-+++ BACKPEDAL // backpeddling upward from path: /Users/derks/Development/backpedal
-+++ BACKPEDAL // backpeddling upward from path: /Users/derks/Development
-+++ BACKPEDAL // backpeddling upward from path: /Users/derks
-+++ BACKPEDAL // backpeddling upward from path: /Users
-+++ BACKPEDAL // backpeddling upward from path: /
-+++ BACKPEDAL // backpeddling downward from path: /Users/derks/Development/backpedal/example
-+++ BACKPEDAL // backpeddling downward from path: /Users/derks/Development/backpedal/example/sub1
-+++ BACKPEDAL // backpeddling downward from path: /Users/derks/Development/backpedal/example/sub1/a
-+++ BACKPEDAL // backpeddling downward from path: /Users/derks/Development/backpedal/example/sub1/a/b
-+++ BACKPEDAL // backpeddling downward from path: /Users/derks/Development/backpedal/example/sub1/a/b/c
-+++ BACKPEDAL // backpeddling downward from path: /Users/derks/Development/backpedal/example/sub1/a/b/c/data
-+++ BACKPEDAL // backpeddling downward from path: /Users/derks/Development/backpedal/example/sub2
-+++ BACKPEDAL // backpeddling downward from path: /Users/derks/Development/backpedal/example/sub2/a
-+++ BACKPEDAL // backpeddling downward from path: /Users/derks/Development/backpedal/example/sub2/a/b
-+++ BACKPEDAL // backpeddling downward from path: /Users/derks/Development/backpedal/example/sub2/a/b/c
++++ BACKPEDAL // backpedaling upward from path: /Users/derks/Development/backpedal/example
++++ BACKPEDAL // backpedaling upward from path: /Users/derks/Development/backpedal
++++ BACKPEDAL // backpedaling upward from path: /Users/derks/Development
++++ BACKPEDAL // backpedaling upward from path: /Users/derks
++++ BACKPEDAL // backpedaling upward from path: /Users
++++ BACKPEDAL // backpedaling upward from path: /
++++ BACKPEDAL // backpedaling downward from path: /Users/derks/Development/backpedal/example
++++ BACKPEDAL // backpedaling downward from path: /Users/derks/Development/backpedal/example/sub1
++++ BACKPEDAL // backpedaling downward from path: /Users/derks/Development/backpedal/example/sub1/a
++++ BACKPEDAL // backpedaling downward from path: /Users/derks/Development/backpedal/example/sub1/a/b
++++ BACKPEDAL // backpedaling downward from path: /Users/derks/Development/backpedal/example/sub1/a/b/c
++++ BACKPEDAL // backpedaling downward from path: /Users/derks/Development/backpedal/example/sub1/a/b/c/data
++++ BACKPEDAL // backpedaling downward from path: /Users/derks/Development/backpedal/example/sub2
++++ BACKPEDAL // backpedaling downward from path: /Users/derks/Development/backpedal/example/sub2/a
++++ BACKPEDAL // backpedaling downward from path: /Users/derks/Development/backpedal/example/sub2/a/b
++++ BACKPEDAL // backpedaling downward from path: /Users/derks/Development/backpedal/example/sub2/a/b/c
 RES > ['/Users/derks/Development/backpedal/example/sub1/a/b/c/data', '/Users/derks/Development/backpedal/example/sub2/data', '/Users/derks/Development/backpedal/example/sub2/a/b/data']
 ```

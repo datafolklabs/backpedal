@@ -33,7 +33,7 @@ def down(path=None):
 
     path = abspath(path)
 
-    log('backpeddling downward from path: %s' % path)
+    log('backpedaling downward from path: %s' % path)
 
     ### directories and files in this path
     items = os.listdir(path)
@@ -62,7 +62,7 @@ def up(path=None):
 
     path = abspath(path)
 
-    log('backpeddling upward from path: %s' % path)
+    log('backpedaling upward from path: %s' % path)
 
     ### directories and files in this path
     items = os.listdir(path)
