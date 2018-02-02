@@ -164,17 +164,30 @@ From within the Docker container, all development requirements are already insta
 An alternative setup would be to use VirtualEnv:
 
 ```
-$ virtualenv env/
+$ make virtualenv
 
 $ source env/bin/activate
 
-(env) $ pip install -r requirements-dev.txt
+|> backpedal <| $
 ```
 
 ### Running Tests
 
 ```
 $ make test
+```
+
+
+### Check PEP8 Compliance
+
+```
+$ make comply
+```
+
+And, fix PEP8 issues:
+
+```
+$ make comply-fix
 ```
 
 ## Contributors

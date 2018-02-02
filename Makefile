@@ -1,11 +1,8 @@
 .PHONY: all init test comply clean
 
-all: init test test-coverage comply api-docs clean
+all: test comply comply-fix clean virtualenv
 
-init:
-	pip install --upgrade -r requirements-dev.txt
-
-test: clean
+test:
 	python -m pytest -v \
 		--cov=backpedal \
 		--cov-report=term \
@@ -20,4 +17,8 @@ comply-fix:
 
 clean:
 	find . -name '*.py[co]' -delete
-	rm -rf doc/build
+	rm -rf doc/build/ env/
+
+virtualenv:
+	virtualenv --prompt="|> backpedal <| " env/
+	env/bin/pip install --upgrade -r requirements-dev.txt
