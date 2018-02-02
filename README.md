@@ -3,6 +3,8 @@
 
 It's like `os.walk()`, but backwards... and on a bicycle.
 
+[![Build Status](https://travis-ci.org/datafolklabs/backpedal.svg?branch=master)](https://travis-ci.org/datafolklabs/backpedal)
+
 **Core Features**
 
 - Walk directories up, down, or both directions
