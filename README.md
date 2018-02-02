@@ -23,7 +23,7 @@ Walk up from a directory `path`.  If no `path` is given, default to `os.curdir`.
 
 **Arguments**
 
-- path: The starting path to walk up from.
+- path *(str)*: The starting path to walk up from.
 
 **Usage**
 
@@ -41,7 +41,7 @@ Walk down from a directory `path`.  If not `path` is given, default to `os.curdi
 
 **Arguments**
 
-- path: The starting path to walk up from.
+- path *(str)*: The starting path to walk up from.
 
 **Usage**
 
