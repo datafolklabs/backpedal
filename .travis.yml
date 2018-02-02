@@ -3,6 +3,7 @@ sudo: false
 script: ./scripts/travis.sh
 os:
   - linux
+  - osx
 python:
   - 2.7
   - 3.3
