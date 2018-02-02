@@ -18,7 +18,7 @@ The primary use case for Backpedal is finding files from within your current dir
 """
 
 setup(name='backpedal',
-    version='0.9.6',
+    version='0.9.8',
     description="Backpedal",
     long_description=LONG,
     author='BJ Dierkes',
