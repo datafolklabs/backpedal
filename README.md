@@ -8,7 +8,7 @@ It's like `os.walk`, but backwards... and on a bicycle.
 - Walk directories up, down, or both directions
 - Search for files, directories, or both item types
 - Return first item found immediately, or list of all matching items
-- 100% Test Coverage (pytest) on Python 2.7, 3.3, 3.4, 3.5, 3.6
+- 100% Test Coverage (pytest) on Python 2.7, 3.4, 3.5, 3.6
 - 100% PEP8 Compliant (pep8, autopep8)
 
 ## Motivation?
