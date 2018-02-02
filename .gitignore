@@ -102,4 +102,5 @@ ENV/
 
 # pytest
 .pytest_cache/
+coverage-report/
 

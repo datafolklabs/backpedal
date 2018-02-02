@@ -13,28 +13,40 @@ def test_log(tmp):
 
 
 def test_up(tmp):
-    for curdir,dirs,files in up('tests/data/sub1'):
+    for curdir, dirs, files in up('tests/data/sub1'):
+        print("CURDIR: %s" % curdir)
         assert os.path.isdir(curdir)
+
         for d in dirs:
-            assert os.path.isdir(os.path.join(curdir, d))
+            full_path = os.path.join(curdir, d)
+            assert os.path.isdir(full_path)
         for f in files:
-            assert os.path.isfile(os.path.join(curdir, f))
+            full_path = os.path.join(curdir, f)
+            assert os.path.isfile(full_path)
+
+        # lets avoid issues with going up out of our source dir
+        if re.match('^(.*)tests$', curdir):
+            break
 
     # if path is None, then it defaults to curdir so lets test that
-    for curdir,dirs,files in up():
+    for curdir, dirs, files in up():
         assert abspath(curdir) == abspath(os.curdir)
         break
 
+
 def test_down(tmp):
-    for curdir,dirs,files in down('tests/data/sub1'):
+    for curdir, dirs, files in down('tests/data/sub1'):
         assert os.path.isdir(curdir)
+
         for d in dirs:
-            assert os.path.isdir(os.path.join(curdir, d))
+            full_path = os.path.join(curdir, d)
+            assert os.path.isdir(full_path)
         for f in files:
-            assert os.path.isfile(os.path.join(curdir, f))
+            full_path = os.path.join(curdir, f)
+            assert os.path.isfile(full_path)
 
     # if path is None, then it defaults to curdir so lets test that
-    for curdir,dirs,files in down():
+    for curdir, dirs, files in down():
         assert abspath(curdir) == abspath(os.curdir)
         break
 
@@ -70,7 +82,6 @@ def test_find_first_only(tmp):
 
     # first_only False
     res = find('README.md', first_only=False, path='tests/data/sub1/a')
-    #assert re.match('(.*)data/sub1/a/README.md', res)
     assert isinstance(res, list)
     for path in res:
         assert re.match('(.*)README.md', path)
@@ -113,6 +124,7 @@ def test_find_item_type(tmp):
     msg = "Argument 'item_type' must be one of"
     with raises(BackpedalArgumentError, match=msg):
         res = find('data', item_type='bogus')
+
 
 def test_find_none(tmp):
     res = find('bogus_file_does_not_exist')

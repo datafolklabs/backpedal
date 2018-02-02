@@ -5,7 +5,7 @@ all: init test test-coverage comply api-docs clean
 init:
 	pip install --upgrade -r requirements-dev.txt
 
-test:
+test: clean
 	python -m pytest -v \
 		--cov=backpedal \
 		--cov-report=term \

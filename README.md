@@ -3,35 +3,81 @@
 
 It's like `os.walk`, but backwards... and on a bicycle.
 
+## Core Features
+
+- Walk directories up, down, or both directions
+- Search for files, directories, or both item types
+- Return first item found immediately, or list of all matching items
+- 100% Test Coverage (pytest)
+- 100% PEP8 Compliant (pep8, autopep8)
+
 ## Motivation?
 
-The primary use case for Backpedal is finding files from within your current directory, and/or parent(s).  For example, both Vagrant and Fabric support running from nested sub-directories within a project while loading their associated `Vagrantfile` of `fabfile.py` from the root (parent) project directory by searching from the current directory and upward.
+The primary use case for Backpedal is finding files from within your current directory, and/or parent(s).  For example, both Vagrant and Fabric support running from nested sub-directories within a project while loading their associated `Vagrantfile` or `fabfile.py` from the root (parent) project directory by searching from the current directory and upward.
 
-## Contributors
+## Documentation
 
-The `walk up` logic was initially garnered from a quick search on Google that produced the following Gist:
+### `up(path)`
 
-- Zach Davis (zdavkeos) - https://gist.github.com/zdavkeos/1098474
+Walk up from a directory `path`.  If not `path` is given, default to `os.curdir`.  Similar to `os.walk` but in the oposite direction.
 
+**Arguments**
 
-Thanks Zach!
+- path: The starting path to walk up from.
 
+**Usage**
 
-## Usage
+```
+import backpedal
 
-```python
+for curdir,dirs,files in backpedal.up('/path/to/starting/dir'):
+    # do something with results
+    pass
+```
+
+### `down(path)`
+
+Walk down from a directory `path`.  If not `path` is given, default to `os.curdir`.  This is synonymous with using `os.walk`.
+
+**Arguments**
+
+- path: The starting path to walk up from.
+
+**Usage**
+
+```
+import backpedal
+
+for curdir,dirs,files in backpedal.down('/path/to/starting/dir'):
+    # do something with results
+    pass
+```
+
+### `find(item, ...):`
+
+Search for `files`, `directories`, or `both` item types from the given `path`, in either `up`, `down`, or `both` directions.
+
+**Arguments**:
+
+- item *(str)*: A string identifier of the directory or file name to search for.
+
+**Keyword Arguments**:
+
+- path *(str)*: The starting path to walk up from.  Defaults to `os.curdir` if no path is given.
+- direction *(str)*: The direction to walk (`up`, `down`, or `both`).  Default: `up`.
+- first_only *(bool)*: Return the first item found (immediately) as a `str`, or return a `list` of all items found.  Default: `True`.
+- item_type *(str)*: Type of item to search for (`file`, `directory`, or `both`).  Default: `file`
+
+**Usage**
+
+```
 import backpedal
 
 ### find a file from current dir, up through all the parents
 res = backpedal.find('Vagrantfile')
-
-### use like os.walk
-for curdir,dirs,files in backpedal.up('/path/to/starting/point'):
-    pass
-
-for curdir,dirs,files in backpedal.down('/path/to/starting/point'):
-    pass
 ```
+
+## Example
 
 From the `example` directory:
 
@@ -96,3 +142,46 @@ Look for files and directories in both directions
 +++ BACKPEDAL // backpedaling downward from path: /Users/derks/Development/backpedal/example/sub2/a/b/c
 RES > ['/Users/derks/Development/backpedal/example/sub1/a/b/c/data', '/Users/derks/Development/backpedal/example/sub2/data', '/Users/derks/Development/backpedal/example/sub2/a/b/data']
 ```
+
+## Development
+
+### Docker Compose
+
+This project includes a basic Docker Compose setup to make development quick and easy, and is the recommended means of working with the source locally:
+
+```
+$ docker-compose up -d
+
+$ docker-compose exec backpedal /bin/ash
+
+app/
+```
+
+From within the Docker container, all development requirements are already installed and ready to go.
+
+### VirtualEnv
+
+An alternative setup would be to use VirtualEnv:
+
+```
+$ virtualenv env/
+
+$ source env/bin/activate
+
+(env) $ pip install -r requirements-dev.txt
+```
+
+### Running Tests
+
+```
+$ make test
+```
+
+## Contributors
+
+The `walk up` logic was initially garnered from a quick search on Google that produced the following Gist:
+
+- Zach Davis (zdavkeos) - https://gist.github.com/zdavkeos/1098474
+
+
+Thanks Zach!
