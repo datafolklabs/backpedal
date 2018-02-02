@@ -1,0 +1,4 @@
+[pypi]
+repository=https://pypi.python.org/pypi
+username=your_username
+password=your_password

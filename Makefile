@@ -22,3 +22,6 @@ clean:
 virtualenv:
 	virtualenv --prompt="|> backpedal <| " env/
 	env/bin/pip install --upgrade -r requirements-dev.txt
+
+deploy: test comply
+	python setup.py sdist upload

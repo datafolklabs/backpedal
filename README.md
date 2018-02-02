@@ -15,6 +15,15 @@ It's like `os.walk`, but backwards... and on a bicycle.
 
 The primary use case for Backpedal is finding files from within your current directory, and/or parent(s).  For example, both Vagrant and Fabric support running from nested sub-directories within a project while loading their associated `Vagrantfile` or `fabfile.py` from the root (parent) project directory by searching from the current directory and upward.
 
+## Installation
+
+Stable versions can be installed from [PyPi](https://pypi.python.org/pypi/backpedal):
+
+```
+$ pip install backpedal
+```
+
+
 ## Documentation
 
 ### `up(path)`
@@ -37,7 +46,7 @@ for curdir,dirs,files in backpedal.up('/path/to/starting/dir'):
 
 ### `down(path)`
 
-Walk down from a directory `path`.  If not `path` is given, default to `os.curdir`.  This is synonymous with using `os.walk`.
+Walk down from a directory `path`.  If no `path` is given, default to `os.curdir`.  This is synonymous with using `os.walk`.
 
 **Arguments**
 
