@@ -19,7 +19,7 @@ The primary use case for Backpedal is finding files from within your current dir
 
 ### `up(path)`
 
-Walk up from a directory `path`.  If not `path` is given, default to `os.curdir`.  Similar to `os.walk` but in the oposite direction.
+Walk up from a directory `path`.  If no `path` is given, default to `os.curdir`.  Similar to `os.walk` but in the oposite direction.
 
 **Arguments**
 
