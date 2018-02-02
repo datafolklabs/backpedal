@@ -1,0 +1,12 @@
+version: "3"
+services:
+    backpedal:
+        image: "backpeddle:dev"
+        build:
+            context: .
+            dockerfile: docker/Dockerfile.dev
+        hostname: backpedal
+        stdin_open: true
+        tty: true
+        volumes:
+            - ".:/app"

@@ -1,0 +1,6 @@
+pytest
+pytest-cov
+coverage
+pep8
+autopep8
+flake8

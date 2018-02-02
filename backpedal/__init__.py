@@ -2,7 +2,9 @@
 import os
 
 
-class BackpedalArgumentError(Exception): pass
+class BackpedalArgumentError(Exception):
+    pass
+
 
 DEBUG = False
 if 'BACKPEDAL_DEBUG' in os.environ.keys():
@@ -35,15 +37,17 @@ def down(path=None):
 
     log('backpedaling downward from path: %s' % path)
 
-    ### directories and files in this path
+    # directories and files in this path
     items = os.listdir(path)
     dirs, files = [], []
 
     for item in items:
-    	if os.path.isdir(os.path.join(path, item)):
-    		dirs.append(item)
-    	else:
-    		files.append(item)
+        if os.path.isdir(os.path.join(path, item)):
+            if item not in dirs:
+                dirs.append(item)
+        else:
+            if item not in files:
+                files.append(item)
 
     yield path, dirs, files
 
@@ -64,25 +68,27 @@ def up(path=None):
 
     log('backpedaling upward from path: %s' % path)
 
-    ### directories and files in this path
+    # directories and files in this path
     items = os.listdir(path)
     dirs, files = [], []
 
     for item in items:
-    	if os.path.isdir(os.path.join(path, item)):
-    		dirs.append(item)
-    	else:
-    		files.append(item)
+        if os.path.isdir(os.path.join(path, item)):
+            if item not in dirs:
+                dirs.append(item)
+        else:
+            if item not in files:
+                files.append(item)
 
     yield path, dirs, files
 
     next_path = abspath(os.path.dirname(path))
 
-    ### stop when we hit the top
+    # stop when we hit the top
     if next_path == path:
-    	return
+        return
 
-    ### iterate
+    # iterate
     for x in up(next_path):
         yield x
 
@@ -110,30 +116,38 @@ def find(item, path=None, direction='up', first_only=True, item_type='file'):
         path = os.curdir
 
     if direction in ['up', 'both']:
-        for cur,dirs,files in up(path):
-            if item_type in ['file', 'both'] and item in files:
-                    if first_only is True:
-                        return os.path.join(cur, item)
-                    else:
-                        found.append(os.path.join(cur, item))
-            elif item_type in ['directory', 'both'] and item in dirs:
-                    if first_only is True:
-                        return os.path.join(cur, item)
-                    else:
-                        found.append(os.path.join(cur, item))
-
-    if direction in ['down', 'both']:
-        for cur,dirs,files in down(path):
+        for cur, dirs, files in up(path):
             if item_type in ['file', 'both'] and item in files:
                 if first_only is True:
                     return os.path.join(cur, item)
                 else:
-                    found.append(os.path.join(cur, item))
+                    full_path = os.path.join(cur, item)
+                    if full_path not in found:
+                        found.append(full_path)
+            elif item_type in ['directory', 'both'] and item in dirs:
+                if first_only is True:
+                    return os.path.join(cur, item)
+                else:
+                    full_path = os.path.join(cur, item)
+                    if full_path not in found:
+                        found.append(full_path)
+
+    if direction in ['down', 'both']:
+        for cur, dirs, files in down(path):
+            if item_type in ['file', 'both'] and item in files:
+                if first_only is True:
+                    return os.path.join(cur, item)
+                else:
+                    full_path = os.path.join(cur, item)
+                    if full_path not in found:
+                        found.append(full_path)
             if item_type in ['directory', 'both'] and item in dirs:
                 if first_only is True:
                     return os.path.join(cur, item)
                 else:
-                    found.append(os.path.join(cur, item))
+                    full_path = os.path.join(cur, item)
+                    if full_path not in found:
+                        found.append(full_path)
 
     if first_only is True or len(found) == 0:
         return None
