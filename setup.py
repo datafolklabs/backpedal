@@ -25,7 +25,7 @@ setup(name='backpedal',
     author_email='derks@datafolklabs.com',
     url='http://github.com/datafolklabs/backpedal',
     license='BSD-three-clause',
-    packages=find_packages(exclude=['ez_setup', 'examples', 'tests']),
+    packages=find_packages(exclude=['ez_setup', 'example', 'tests']),
     include_package_data=True,
     zip_safe=False,
 )
