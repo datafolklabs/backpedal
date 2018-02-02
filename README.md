@@ -1,9 +1,9 @@
 
 # Backpedal
 
-It's like `os.walk`, but backwards... and on a bicycle.
+It's like `os.walk()`, but backwards... and on a bicycle.
 
-## Core Features
+**Core Features**
 
 - Walk directories up, down, or both directions
 - Search for files, directories, or both item types
@@ -11,9 +11,16 @@ It's like `os.walk`, but backwards... and on a bicycle.
 - 100% Test Coverage (pytest) on Python 2.7, 3.4, 3.5, 3.6
 - 100% PEP8 Compliant (pep8, autopep8)
 
-## Motivation?
+**Motivation**
 
-The primary use case for Backpedal is finding files from within your current directory, and/or parent(s).  For example, both Vagrant and Fabric support running from nested sub-directories within a project while loading their associated `Vagrantfile` or `fabfile.py` from the root (parent) project directory by searching from the current directory and upward.
+The primary use case for backpedal is finding files from within your current directory, and/or parent(s).  For example, both Vagrant and Fabric support running from nested sub-directories within a project while loading their associated `Vagrantfile` or `fabfile.py` from the root (parent) project directory by searching from the current directory and upward.
+
+The `walk up` logic was initially garnered from a quick search on Google that produced the following Gist:
+
+- Zach Davis (zdavkeos) - https://gist.github.com/zdavkeos/1098474
+
+Thanks Zach!
+
 
 ## Installation
 
@@ -152,7 +159,7 @@ Look for files and directories in both directions
 RES > ['/Users/derks/Development/backpedal/example/sub1/a/b/c/data', '/Users/derks/Development/backpedal/example/sub2/data', '/Users/derks/Development/backpedal/example/sub2/a/b/data']
 ```
 
-## Development
+## Development and Contributing
 
 ### Docker Compose
 
@@ -180,7 +187,7 @@ $ source env/bin/activate
 |> backpedal <| $
 ```
 
-### Running Tests
+### Run Tests
 
 ```
 $ make test
@@ -198,12 +205,3 @@ And, fix PEP8 issues:
 ```
 $ make comply-fix
 ```
-
-## Contributors
-
-The `walk up` logic was initially garnered from a quick search on Google that produced the following Gist:
-
-- Zach Davis (zdavkeos) - https://gist.github.com/zdavkeos/1098474
-
-
-Thanks Zach!
