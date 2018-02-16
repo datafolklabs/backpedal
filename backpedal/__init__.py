@@ -2,6 +2,7 @@
 import os
 import re
 
+
 class BackpedalArgumentError(Exception):
     pass
 
@@ -96,7 +97,6 @@ def up(path=None):
 def _ignored(path, ignore):
     # we do this here because we want regex to match
     # the full path
-    ignore_it = False
     if ignore is None or len(ignore) == 0:
         return False
 
@@ -134,7 +134,6 @@ def find(item, path=None, **kwargs):
         type_log = item_type
     log('looking for %s %s' % (type_log, item))
 
-
     if direction == 'both':
         d_funcs = [up, down]
     elif direction == 'up':
@@ -171,7 +170,6 @@ def find(item, path=None, **kwargs):
                         elif re.match(item, x):
                             if full_path not in found:
                                 found.append(full_path)
-
 
                 # if no regex then just test that the item is in the list
                 # note that regex is always used for ignore list

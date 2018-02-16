@@ -135,8 +135,8 @@ def test_find_regex(tmp):
     res = find('dat', direction='down', path='tests/', regex=False)
     assert res is None
 
-    res = find('(.*)dat(.*)', direction='down', path='tests/', regex=True, \
-              first_only=False)
+    res = find('(.*)dat(.*)', direction='down', path='tests/', regex=True,
+               first_only=False)
     assert isinstance(res, list)
     for path in res:
         assert re.match('(.*)data', path)
@@ -148,8 +148,8 @@ def test_find_regex(tmp):
 
 def test_find_ignore(tmp):
     # first do a control to make sure we find 'sub2'
-    res = find('data', item_type='both', direction='down', path='tests/', \
-              regex=True, first_only=False)
+    res = find('data', item_type='both', direction='down', path='tests/',
+               regex=True, first_only=False)
 
     ok = False
     for path in res:
@@ -160,8 +160,8 @@ def test_find_ignore(tmp):
 
     # then try and ignore it
 
-    res = find('data', item_type='both', direction='down', path='tests/', \
-              regex=True, first_only=False, ignore=['(.*)sub2(.*)'])
+    res = find('data', item_type='both', direction='down', path='tests/',
+               regex=True, first_only=False, ignore=['(.*)sub2(.*)'])
     assert isinstance(res, list)
 
     for path in res:
