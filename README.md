@@ -81,10 +81,13 @@ Search for `files`, `directories`, or `both` item types from the given `path`, i
 
 **Keyword Arguments**:
 
-- path *(str)*: The starting path to walk up from.  Defaults to `os.curdir` if no path is given.
+- path *(str)*: The starting path to walk up from.  Defaults to `os.curdir()` if no path is given.
 - direction *(str)*: The direction to walk (`up`, `down`, or `both`).  Default: `up`.
 - first_only *(bool)*: Return the first item found (immediately) as a `str`, or return a `list` of all items found.  Default: `True`.
 - item_type *(str)*: Type of item to search for (`file`, `directory`, or `both`).  Default: `file`
+- regex *(bool)*: Whether to treat `item` as a regular expression.  Default: `false`
+- ignore *(list)*: List of regular expressions to filter out matching results.  Note that this is not affected by the `regex` keyword argument...  the `ignore` list is already treated as regex.  Default: `None`.
+
 
 **Usage**
 
@@ -93,6 +96,9 @@ import backpedal
 
 ### find a file from current dir, up through all the parents
 res = backpedal.find('Vagrantfile')
+
+### find a file or directory, and filter with ignore
+res = backpedal.find('README', item_type='both', ignore=['(.*)\.git(.*)'])
 ```
 
 ## Example

@@ -129,3 +129,53 @@ def test_find_item_type(tmp):
 def test_find_none(tmp):
     res = find('bogus_file_does_not_exist')
     assert res is None
+
+
+def test_find_regex(tmp):
+    res = find('dat', direction='down', path='tests/', regex=False)
+    assert res is None
+
+    res = find('(.*)dat(.*)', direction='down', path='tests/', regex=True, \
+              first_only=False)
+    assert isinstance(res, list)
+    for path in res:
+        assert re.match('(.*)data', path)
+
+    # coverage
+    res = find('(.*)dat(.*)', direction='down', path='tests/', regex=True)
+    re.match('(.*)data/sub2/data', res)
+
+
+def test_find_ignore(tmp):
+    # first do a control to make sure we find 'sub2'
+    res = find('data', item_type='both', direction='down', path='tests/', \
+              regex=True, first_only=False)
+
+    ok = False
+    for path in res:
+        if re.match('(.*)sub2(.*)', path):
+            ok = True
+            break
+    assert ok is True
+
+    # then try and ignore it
+
+    res = find('data', item_type='both', direction='down', path='tests/', \
+              regex=True, first_only=False, ignore=['(.*)sub2(.*)'])
+    assert isinstance(res, list)
+
+    for path in res:
+        assert not re.match('(.*)sub2(.*)', path)
+
+    ok = True
+    for path in res:
+        if re.match('(.*)sub2(.*)', path):
+            ok = False
+            break
+    assert ok is True
+
+    # coverage
+
+    res = find('data', item_type='both', direction='down', path='tests/',
+               first_only=True, ignore=['(.*)data(.*)'])
+    assert res is None

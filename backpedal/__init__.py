@@ -1,6 +1,6 @@
 
 import os
-
+import re
 
 class BackpedalArgumentError(Exception):
     pass
@@ -93,7 +93,31 @@ def up(path=None):
         yield x
 
 
-def find(item, path=None, direction='up', first_only=True, item_type='file'):
+def _ignored(path, ignore):
+    # we do this here because we want regex to match
+    # the full path
+    ignore_it = False
+    if ignore is None or len(ignore) == 0:
+        return False
+
+    else:
+        for ignore_regex in ignore:
+            if re.match(ignore_regex, path):
+                return True
+
+    return False
+
+
+def find(item, path=None, **kwargs):
+    direction = kwargs.get('direction', 'up')
+    first_only = kwargs.get('first_only', True)
+    item_type = kwargs.get('item_type', 'file')
+    ignore = kwargs.get('ignore', None)
+    regex = kwargs.get('regex', False)
+    found = []
+    if path is None:
+        path = os.curdir
+
     try:
         assert direction in ['up', 'down', 'both'], \
             "Argument 'direction' must be one of ['up', 'down', 'both']."
@@ -108,46 +132,60 @@ def find(item, path=None, direction='up', first_only=True, item_type='file'):
         type_log = 'files/directories'
     else:
         type_log = item_type
-
     log('looking for %s %s' % (type_log, item))
-    found = []
 
-    if path is None:
-        path = os.curdir
 
-    if direction in ['up', 'both']:
-        for cur, dirs, files in up(path):
-            if item_type in ['file', 'both'] and item in files:
-                if first_only is True:
-                    return os.path.join(cur, item)
-                else:
-                    full_path = os.path.join(cur, item)
-                    if full_path not in found:
-                        found.append(full_path)
-            elif item_type in ['directory', 'both'] and item in dirs:
-                if first_only is True:
-                    return os.path.join(cur, item)
-                else:
-                    full_path = os.path.join(cur, item)
-                    if full_path not in found:
-                        found.append(full_path)
+    if direction == 'both':
+        d_funcs = [up, down]
+    elif direction == 'up':
+        d_funcs = [up]
+    elif direction == 'down':
+        d_funcs = [down]
 
-    if direction in ['down', 'both']:
-        for cur, dirs, files in down(path):
-            if item_type in ['file', 'both'] and item in files:
-                if first_only is True:
-                    return os.path.join(cur, item)
+    # iterate over our direction functions (same logic, different direction)
+    for d_func in d_funcs:
+        for cur, dirs, files in d_func(path):
+            # determine which lists to search in based on item_type
+            if item_type == 'file':
+                search_in = [files]
+            elif item_type == 'directory':
+                search_in = [dirs]
+            elif item_type == 'both':
+                search_in = [files, dirs]
+
+            # iterate over each list we need to search in
+            for search_list in search_in:
+
+                # if regex then iterate over each item in the search_list
+                # and match (expensive!)
+                if regex is True:
+                    for x in search_list:
+                        full_path = os.path.join(cur, x)
+
+                        if _ignored(full_path, ignore):
+                            pass
+
+                        elif re.match(item, x) and first_only is True:
+                            return full_path
+
+                        elif re.match(item, x):
+                            if full_path not in found:
+                                found.append(full_path)
+
+
+                # if no regex then just test that the item is in the list
+                # note that regex is always used for ignore list
                 else:
                     full_path = os.path.join(cur, item)
-                    if full_path not in found:
-                        found.append(full_path)
-            if item_type in ['directory', 'both'] and item in dirs:
-                if first_only is True:
-                    return os.path.join(cur, item)
-                else:
-                    full_path = os.path.join(cur, item)
-                    if full_path not in found:
-                        found.append(full_path)
+
+                    if _ignored(full_path, ignore):
+                        pass
+                    elif item in search_list and first_only is True:
+                        return full_path
+                    elif item in search_list:
+                        full_path = os.path.join(cur, item)
+                        if full_path not in found:
+                            found.append(full_path)
 
     if first_only is True or len(found) == 0:
         return None

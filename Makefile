@@ -1,6 +1,8 @@
-.PHONY: all init test comply clean
+.PHONY: dev test comply comply-fix clean virtualenv deploy
 
-all: test comply comply-fix clean virtualenv
+dev:
+	docker-compose up -d
+	docker-compose exec backpedal /bin/ash
 
 test:
 	python -m pytest -v \
