@@ -35,13 +35,16 @@ $ pip install backpedal
 
 ## Documentation
 
+As this is currently a very basic library, all documentation is here in this README. In the feature, as the project grows, more advanced/proper documentation will be added.
+
+
 ### `up(path)`
 
 Walk up from a directory `path`.  If no `path` is given, default to `os.curdir`.  Similar to `os.walk` but in the oposite direction.
 
 **Arguments**
 
-- path *(str)*: The starting path to walk up from.
+- **path** *(str)*: The starting path to walk up from.
 
 **Usage**
 
@@ -59,7 +62,7 @@ Walk down from a directory `path`.  If no `path` is given, default to `os.curdir
 
 **Arguments**
 
-- path *(str)*: The starting path to walk up from.
+- **path** *(str)*: The starting path to walk up from.
 
 **Usage**
 
@@ -77,16 +80,16 @@ Search for `files`, `directories`, or `both` item types from the given `path`, i
 
 **Arguments**:
 
-- item *(str)*: A string identifier of the directory or file name to search for.
+- **item** *(str)*: A string identifier of the directory or file name to search for.
 
 **Keyword Arguments**:
 
-- path *(str)*: The starting path to walk up from.  Defaults to `os.curdir()` if no path is given.
-- direction *(str)*: The direction to walk (`up`, `down`, or `both`).  Default: `up`.
-- first_only *(bool)*: Return the first item found (immediately) as a `str`, or return a `list` of all items found.  Default: `True`.
-- item_type *(str)*: Type of item to search for (`file`, `directory`, or `both`).  Default: `file`
-- regex *(bool)*: Whether to treat `item` as a regular expression.  Default: `false`
-- ignore *(list)*: List of regular expressions to filter out matching results.  Note that this is not affected by the `regex` keyword argument...  the `ignore` list is already treated as regex.  Default: `None`.
+- **path** *(str)*: The starting path to walk up from.  Defaults to `os.curdir()` if no path is given.
+- **direction** *(str)*: The direction to walk (`up`, `down`, or `both`).  Default: `up`.
+- **first_only** *(bool)*: Return the first item found (immediately) as a `str`, or return a `list` of all items found.  Default: `True`.
+- **item_type** *(str)*: Type of item to search for (`file`, `directory`, or `both`).  Default: `file`
+- **regex** *(bool)*: Whether to treat `item` as a regular expression.  Default: `false`
+- **ignore** *(list)*: List of regular expressions to filter out matching results.  Note that this is not affected by the `regex` keyword argument...  the `ignore` list is already treated as regex.  Default: `None`.
 
 
 **Usage**

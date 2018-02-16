@@ -1,6 +1,15 @@
 # CHANGELOG
 
-## 0.9.1 - DEVELOPMENT (will be released as dev/0.9.2 or stable/1.0.0)
+## 0.9.10
+
+Features:
+
+- Added support for regular expression matching, as well as filter with an
+  ignore list:
+    - Issue #2
+
+
+## 0.9.1
 
 *initial development phase*
 
