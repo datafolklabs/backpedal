@@ -35,10 +35,10 @@ $ pip install backpedal
 
 ## Documentation
 
-As this is currently a very basic library, all documentation is here in this README. In the feature, as the project grows, more advanced/proper documentation will be added.
+As this is currently a very basic library, all documentation is here in this README. In the future, as the project grows, more advanced/proper documentation will be added.
 
 
-### `up(path)`
+### `def up(path):`
 
 Walk up from a directory `path`.  If no `path` is given, default to `os.curdir`.  Similar to `os.walk` but in the oposite direction.
 
@@ -48,7 +48,7 @@ Walk up from a directory `path`.  If no `path` is given, default to `os.curdir`.
 
 **Usage**
 
-```
+```python
 import backpedal
 
 for curdir,dirs,files in backpedal.up('/path/to/starting/dir'):
@@ -56,7 +56,7 @@ for curdir,dirs,files in backpedal.up('/path/to/starting/dir'):
     pass
 ```
 
-### `down(path)`
+### `def down(path):`
 
 Walk down from a directory `path`.  If no `path` is given, default to `os.curdir`.  This is synonymous with using `os.walk`.
 
@@ -66,7 +66,7 @@ Walk down from a directory `path`.  If no `path` is given, default to `os.curdir
 
 **Usage**
 
-```
+```python
 import backpedal
 
 for curdir,dirs,files in backpedal.down('/path/to/starting/dir'):
@@ -74,7 +74,7 @@ for curdir,dirs,files in backpedal.down('/path/to/starting/dir'):
     pass
 ```
 
-### `find(item, ...):`
+### `def find(item, ...):`
 
 Search for `files`, `directories`, or `both` item types from the given `path`, in either `up`, `down`, or `both` directions.
 
@@ -94,7 +94,7 @@ Search for `files`, `directories`, or `both` item types from the given `path`, i
 
 **Usage**
 
-```
+```python
 import backpedal
 
 ### find a file from current dir, up through all the parents
