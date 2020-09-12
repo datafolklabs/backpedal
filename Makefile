@@ -2,7 +2,9 @@
 
 dev:
 	docker-compose up -d
-	docker-compose exec backpedal /bin/ash
+	docker-compose exec backpedal pip install -r requirements-dev.txt
+	docker-compose exec backpedal python setup.py develop
+	docker-compose exec backpedal /bin/bash
 
 test:
 	python -m pytest -v \

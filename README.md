@@ -10,7 +10,7 @@ It's like `os.walk()`, but backwards... and on a bicycle.
 - Walk directories up, down, or both directions
 - Search for files, directories, or both item types
 - Return first item found immediately, or list of all matching items
-- 100% Test Coverage (pytest) on Python 2.7, 3.4, 3.5, 3.6
+- 100% Test Coverage (pytest) on Python 2.7, 3.4, 3.5, 3.6, 3.7, 3.8
 - 100% PEP8 Compliant (pep8, autopep8)
 
 **Motivation**
@@ -172,16 +172,23 @@ RES > ['/Users/derks/Development/backpedal/example/sub1/a/b/c/data', '/Users/der
 
 ## Development and Contributing
 
-### Docker Compose
+### Docker
 
-This project includes a basic Docker Compose setup to make development quick and easy, and is the recommended means of working with the source locally:
+This project includes a `docker-compose` configuration that sets up all required services, and dependencies for development and testing.  This is the recommended path for local development, and is the only fully supported option.
+
+The following creates all required docker containers, and launches an BASH shell within the `backpedal` dev container for development.
+```
+$ make dev
+
+|> cement <| src #
+```
+
+The above is the equivalent of running:
 
 ```
 $ docker-compose up -d
 
-$ docker-compose exec backpedal /bin/ash
-
-app/
+$ docker-compose exec cement /bin/bash
 ```
 
 From within the Docker container, all development requirements are already installed and ready to go.

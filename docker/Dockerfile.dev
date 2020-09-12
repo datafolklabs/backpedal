@@ -1,7 +1,9 @@
-FROM python:3.6-alpine
+FROM python:3.8-alpine
 MAINTAINER BJ Dierkes <derks@datafolklabs.com>
-WORKDIR /app
-COPY requirements-dev.txt /app/
+ENV PS1="\[\e[0;33m\]|> backpedal <| \[\e[1;35m\]\W\[\e[0m\] \[\e[0m\]# "
+
+WORKDIR /src
+COPY requirements-dev.txt /src/
 RUN apk update \
     && apk add libmemcached-dev \
         gcc \
@@ -9,6 +11,15 @@ RUN apk update \
         cyrus-sasl-dev \
         zlib-dev \
         make \
+        vim \
+        bash \
+        git \
+        libffi \
+        libffi-dev \
+        openssl-dev \
+    && ln -sf /usr/bin/vim /usr/bin/vi \
     && pip install --no-cache-dir -r requirements-dev.txt
-COPY . /app
-CMD ["/bin/ash"]
+COPY . /src
+COPY docker/vimrc /root/.vimrc
+RUN python setup.py develop
+CMD ["/bin/bash"]
