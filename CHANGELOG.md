@@ -1,5 +1,15 @@
 # CHANGELOG
 
+## 0.9.14
+
+- Bump version for PyPi README
+
+
+## 0.9.12
+
+- Update dev to target Python 3.9
+
+
 ## 0.9.10
 
 Features:

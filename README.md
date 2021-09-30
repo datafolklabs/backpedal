@@ -3,14 +3,14 @@
 
 It's like `os.walk()`, but backwards... and on a bicycle.
 
-[![Build Status](https://travis-ci.org/datafolklabs/backpedal.svg?branch=master)](https://travis-ci.org/datafolklabs/backpedal)
+[![Continuous Integration Status](https://app.travis-ci.com/datafolklabs/backpedal.svg?branch=master)](https://app.travis-ci.com/github/datafolklabs/backpedal/)
 
 **Core Features**
 
 - Walk directories up, down, or both directions
 - Search for files, directories, or both item types
 - Return first item found immediately, or list of all matching items
-- 100% Test Coverage (pytest) on Python 2.7, 3.6, 3.7, 3.8
+- 100% Test Coverage (pytest) on Python 3.6+
 - 100% PEP8 Compliant (pep8, autopep8)
 
 **Motivation**
@@ -22,6 +22,11 @@ The `walk up` logic was initially garnered from a quick search on Google that pr
 - Zach Davis (zdavkeos) - https://gist.github.com/zdavkeos/1098474
 
 Thanks Zach!
+
+
+## License
+
+Backpedal is Open Source and is distributed under the BSD License (three clause).  Please see the LICENSE file included with this software.
 
 
 ## Installation
@@ -170,7 +175,7 @@ Look for files and directories in both directions
 RES > ['/Users/derks/Development/backpedal/example/sub1/a/b/c/data', '/Users/derks/Development/backpedal/example/sub2/data', '/Users/derks/Development/backpedal/example/sub2/a/b/data']
 ```
 
-## Development and Contributing
+## Development
 
 ### Docker
 
@@ -180,7 +185,7 @@ The following creates all required docker containers, and launches an BASH shell
 ```
 $ make dev
 
-|> cement <| src #
+|> backpedal <| src #
 ```
 
 The above is the equivalent of running:
@@ -188,38 +193,48 @@ The above is the equivalent of running:
 ```
 $ docker-compose up -d
 
-$ docker-compose exec cement /bin/bash
+$ docker-compose exec backpedal /bin/bash
 ```
 
-From within the Docker container, all development requirements are already installed and ready to go.
+**Testing Alternative Versions of Python**
 
-### VirtualEnv
-
-An alternative setup would be to use VirtualEnv:
+The latest stable version of Python 3 is the default, and target version accessible as the `backpedal` container within Docker Compose.  For testing against alternative versions of python, additional containers are created (ex: `backpedal-py37`, `backpedal-py38`, etc). You can access these containers via:
 
 ```
-$ make virtualenv
+$ docker-compose ps
+        Name                      Command               State     Ports
+-------------------------------------------------------------------------
+backpedal_backpedal-py35_1   /bin/bash                        Up
+backpedal_backpedal-py36_1   /bin/bash                        Up
+backpedal_backpedal-py37_1   /bin/bash                        Up
+backpedal_backpedal-py38_1   /bin/bash                        Up
+backpedal_backpedal-py39_1   /bin/bash                        Up
+backpedal_backpedal_1        /bin/bash                        Up
 
-$ source env/bin/activate
 
-|> backpedal <| $
+$ docker-compose exec backpedal-py37 /bin/bash
+
+|> backpedal-py37 <| src #
 ```
 
-### Run Tests
+### Releasing to PyPi
+
+*Only for official maintainers.*
+
+Before releasing to PyPi, you must configure your login credentials:
+
+**~/.pypirc**:
 
 ```
-$ make test
+[pypi]
+username = __token__
+password = YOUR_PYPI_API_TOKEN
 ```
 
-
-### Check PEP8 Compliance
-
-```
-$ make comply
-```
-
-And, fix PEP8 issues:
+Then use the included helper function via the `Makefile`:
 
 ```
-$ make comply-fix
+$ make dist
+
+$ make dist-upload
 ```

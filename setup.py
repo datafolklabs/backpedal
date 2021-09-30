@@ -1,26 +1,17 @@
 
 from setuptools import setup, find_packages
+from backpedal import VERSION
 
-LONG="""
-It's like `os.walk`, but backwards... and on a bicycle.
 
-## Core Features
-
-- Walk directories up, down, or both directions
-- Search for files, directories, or both item types
-- Return first item found immediately, or list of all matching items
-- 100% Test Coverage (pytest)
-- 100% PEP8 Compliant (pep8, autopep8)
-
-## Motivation?
-
-The primary use case for Backpedal is finding files from within your current directory, and/or parent(s).  For example, both Vagrant and Fabric support running from nested sub-directories within a project while loading their associated `Vagrantfile` or `fabfile.py` from the root (parent) project directory by searching from the current directory and upward.
-"""
+f = open('README-pypi.md', 'r')
+LONG_DESCRIPTION = f.read()
+f.close()
 
 setup(name='backpedal',
-    version='0.9.10',
+    version=VERSION,
     description="Backpedal",
-    long_description=LONG,
+    long_description=LONG_DESCRIPTION,
+    long_description_content_type='text/markdown',
     author='BJ Dierkes',
     author_email='derks@datafolklabs.com',
     url='http://github.com/datafolklabs/backpedal',

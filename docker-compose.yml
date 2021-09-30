@@ -1,7 +1,7 @@
 version: "3"
 services:
-    backpedal:
-        image: "backpeddle:dev"
+    backpedal: &DEFAULTS
+        image: "backpedle:dev"
         build:
             context: .
             dockerfile: docker/Dockerfile.dev
@@ -9,4 +9,32 @@ services:
         stdin_open: true
         tty: true
         volumes:
-            - ".:/app"
+            - ".:/src"
+    
+    backpedal-py36:
+        <<: *DEFAULTS
+        image: "backpedal:dev-py36"
+        build:
+            context: .
+            dockerfile: docker/Dockerfile.dev-py36
+    
+    backpedal-py37:
+        <<: *DEFAULTS
+        image: "backpedal:dev-py37"
+        build:
+            context: .
+            dockerfile: docker/Dockerfile.dev-py37
+    
+    backpedal-py38:
+        <<: *DEFAULTS
+        image: "backpedal:dev-py38"
+        build:
+            context: .
+            dockerfile: docker/Dockerfile.dev-py38
+    
+    backpedal-py39:
+        <<: *DEFAULTS
+        image: "backpedal:dev-py39"
+        build:
+            context: .
+            dockerfile: docker/Dockerfile.dev-py39

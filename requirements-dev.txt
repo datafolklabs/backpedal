@@ -5,3 +5,4 @@ pep8
 autopep8
 flake8
 ipython
+twine

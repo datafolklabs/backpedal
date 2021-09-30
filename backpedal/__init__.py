@@ -3,6 +3,8 @@ import os
 import re
 
 
+VERSION = '0.9.14'
+
 class BackpedalArgumentError(Exception):
     pass
 
