@@ -6,7 +6,7 @@ dev:
 	docker-compose exec backpedal python setup.py develop
 	docker-compose exec backpedal /bin/bash
 
-test:
+test: comply
 	python -m pytest -v \
 		--cov=backpedal \
 		--cov-report=term \
