@@ -1,7 +1,7 @@
 version: "3"
 services:
     backpedal: &DEFAULTS
-        image: "backpedle:dev"
+        image: "backpedal:dev"
         build:
             context: .
             dockerfile: docker/Dockerfile.dev
